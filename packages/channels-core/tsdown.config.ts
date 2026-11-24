@@ -37,4 +37,9 @@ export default defineConfig({
     jsx: "automatic",
     jsxImportSource: "@copilotkit/channels-core",
   },
+  // Prevent tsdown from bundling vitest (a devDependency used only in the
+  // testing/state-store-conformance entry). Without this, tsdown warns about
+  // the devDependency being bundled and in CI the warning causes a build
+  // failure because failOnWarn defaults to true (#8539).
+  external: ["vitest"],
 });
